@@ -1,22 +1,20 @@
-
 import "./App.css";
 
-import FooterMain from "./components/footers/footerMain";
+import React from "react";
 
+import Menu from "./Component/Menu";
 
-import './App.css';
-// import Header from './Component/Header';
-import Menu from './Component/Menu';
+import FooterMain from "../src/Component/footer/footerMain";
 function App() {
   return (
-    <div className="App">
-
-      <Menu/>
-      
-
-    <div>
-      
-
+    <>
+      <div>
+        <Menu />
+      </div>
+      <div>
+        <FooterMain />
+      </div>
+    </>
   );
 }
 
