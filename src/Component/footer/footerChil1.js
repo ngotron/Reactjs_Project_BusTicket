@@ -3,46 +3,46 @@ import React from "react";
 const FooterChil1 = () => {
   return (
     <>
-      <div class="col-lg-3 footer_column">
-        <div class="footer_col">
-          <div class="footer_content footer_about">
-            <div class="logo_container footer_logo">
-              <div class="logo">
+      <div className="col-lg-3 footer_column">
+        <div className="footer_col">
+          <div className="footer_content footer_about">
+            <div className="logo_container footer_logo">
+              <div className="logo">
                 <a href="#">
                   <img src="images/logo.png" alt="" />
                   travelix
                 </a>
               </div>
             </div>
-            <p class="footer_about_text">
+            <p className="footer_about_text">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
               quis vu lputate eros, iaculis consequat nisl. Nunc et suscipit
               urna. Integer eleme ntum orci eu vehicula pretium.
             </p>
-            <ul class="footer_social_list">
-              <li class="footer_social_item">
+            <ul className="footer_social_list">
+              <li className="footer_social_item">
                 <a href="#">
-                  <i class="fa fa-pinterest"></i>
+                  <i className="fa fa-pinterest" />
                 </a>
               </li>
-              <li class="footer_social_item">
+              <li className="footer_social_item">
                 <a href="#">
-                  <i class="fa fa-facebook-f"></i>
+                  <i className="fa fa-facebook-f" />
                 </a>
               </li>
-              <li class="footer_social_item">
+              <li className="footer_social_item">
                 <a href="#">
-                  <i class="fa fa-twitter"></i>
+                  <i className="fa fa-twitter" />
                 </a>
               </li>
-              <li class="footer_social_item">
+              <li className="footer_social_item">
                 <a href="#">
-                  <i class="fa fa-dribbble"></i>
+                  <i className="fa fa-dribbble" />
                 </a>
               </li>
-              <li class="footer_social_item">
+              <li className="footer_social_item">
                 <a href="#">
-                  <i class="fa fa-behance"></i>
+                  <i className="fa fa-behance" />
                 </a>
               </li>
             </ul>

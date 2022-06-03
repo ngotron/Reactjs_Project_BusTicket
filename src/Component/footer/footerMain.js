@@ -5,9 +5,9 @@ import FooterChil3 from "./footerChil3";
 import FooterChil4 from "./footerChil4";
 const FooterMain = () => {
   return (
-    <footer class="footer">
-      <div class="container">
-        <div class="row">
+    <footer className="footer">
+      <div className="container">
+        <div className="row">
           {/* colum 1 */}
           <FooterChil1 />
           {/* colum 2 */}
