@@ -1,10 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
 import Ofers from './componnet/Ofers';
+import Navba from './componnet/Navba';
 
+import Menu from './Component/Menu';
 function App() {
   return (
-    <Ofers/>
+    <>
+      <Navba />
+      <Ofers />
+    </>
+
     // <div>rrrrrrrrrrrrrrrr</div>
     // <div className="App">
     //   <header className="App-header">
@@ -16,7 +22,7 @@ function App() {
     //       className="App-link"
     //       href="https://reactjs.org"
     //       target="_blank"
-    //       rel="noopener noreferrer" 
+    //       rel="noopener noreferrer"
     //     >
     //       Learn React
     //     </a>
