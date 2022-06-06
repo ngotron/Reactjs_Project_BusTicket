@@ -1,33 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
-import Ofers from './componnet/Ofers';
-import Navba from './componnet/Navba';
+import "./App.css";
 
-import Menu from './Component/Menu';
+import React from "react";
+
+import Menu from "./Component/Menu";
+
+import FooterMain from "../src/Component/footer/footerMain";
+import SearchComponent from "./Component/Search/SearchComponent";
+import Main from "./Component/Search/Main";
 function App() {
   return (
     <>
-      <Navba />
-      <Ofers />
+      <div>
+        <Menu />
+      </div>
+     {/* <div className="offers"> 
+     <div className="search"> 
+     <div className="search-inner"> 
+          <SearchComponent></SearchComponent>
+        </div>
+     </div>
+     </div> */}
+      <div>
+        <Main></Main>
+      </div>
+      <div>
+        <FooterMain />
+      </div>
     </>
-
-    // <div>rrrrrrrrrrrrrrrr</div>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
   );
 }
 
