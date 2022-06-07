@@ -5,31 +5,20 @@ import ListItem from './ListItem';
 
 const columns = [
     {
-        name: 'ID',
+        name: 'Nha xe',
         selector: row => row.id,
     },
     {
-        name: 'Title',
+        name: 'Xuat phat',
         selector: row => row.title,
     },
     {
-        name: 'Year',
+        name: 'Den noi',
         selector: row => row.year,
     },
 ];
 
-const data = [
-    {
-        id: 1,
-        title: 'Beetlejuice',
-        year: '1988',
-    },
-    {
-        id: 2,
-        title: 'Ghostbusters',
-        year: '1984',
-    },
-]
+
 export default function Main() {
   return (
    <>

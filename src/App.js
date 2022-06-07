@@ -1,25 +1,26 @@
-import "./App.css";
+import React, { useEffect, useState } from "react";
 
-import React from "react";
+import axios from "axios";
 
 import Menu from "./Component/Menu";
-
 import FooterMain from "../src/Component/footer/footerMain";
-import SearchComponent from "./Component/Search/SearchComponent";
 import Main from "./Component/Search/Main";
+
 function App() {
+  const[isLoading,setIsLoading] = useState("...loading...");
+  const[data,setData] = useState([])
+
+  useEffect(()=>{
+    axios.get('http://localhost:4000/nhaXe1').then(res=>{
+      console.log(res.data);
+      setData(res.data)
+    })
+  },[])
   return (
     <>
       <div>
         <Menu />
       </div>
-     {/* <div className="offers"> 
-     <div className="search"> 
-     <div className="search-inner"> 
-          <SearchComponent></SearchComponent>
-        </div>
-     </div>
-     </div> */}
       <div>
         <Main></Main>
       </div>
