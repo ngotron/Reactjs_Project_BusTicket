@@ -6,11 +6,11 @@ import ListItem from './ListItem';
 const columns = [
     {
         name: 'Nha xe',
-        selector: row => row.id,
+        selector: row => row.nhaXe,
     },
     {
         name: 'Xuat phat',
-        selector: row => row.title,
+        selector: row => row.xuatPhat,
     },
     {
         name: 'Den noi',
@@ -19,7 +19,7 @@ const columns = [
 ];
 
 
-export default function Main() {
+export default function Main({data}) {
   return (
    <>
    <h2>

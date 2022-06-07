@@ -1,32 +1,32 @@
 import React, { useEffect, useState } from "react";
 
-import axios from "axios";
+
 
 import Menu from "./Component/Menu";
 import FooterMain from "../src/Component/footer/footerMain";
 import Main from "./Component/Search/Main";
+import Navba from "./componnet/Navba";
+import Ofers from "./componnet/Ofers"
+import { Link, Route, Routes } from "react-router-dom";
+import Home from "./Pages/Home";
+import Error from "./Pages/Error";
+
 
 function App() {
-  const[isLoading,setIsLoading] = useState("...loading...");
-  const[data,setData] = useState([])
 
-  useEffect(()=>{
-    axios.get('http://localhost:4000/nhaXe1').then(res=>{
-      console.log(res.data);
-      setData(res.data)
-    })
-  },[])
   return (
     <>
-      <div>
-        <Menu />
-      </div>
-      <div>
-        <Main></Main>
-      </div>
-      <div>
-        <FooterMain />
-      </div>
+    <nav>
+      <ul>
+        <li><Link to="/">aaaa</Link></li>
+        <li><Link to="/fff">bbbb</Link></li>
+        <li><Link to="/ff33f">cccc</Link></li>
+      </ul>
+    </nav>
+    <Routes>
+      <Route path="/" element={<Home/>}></Route>
+      <Route path="/:string" element={<Error/>}></Route>
+    </Routes>
     </>
   );
 }
