@@ -5,11 +5,11 @@ import FooterMain from "../Component/footer/footerMain";
 // import Main from "./Component/Search/Main";
 import Navba from "../componnet/Navba";
 import Ofers from "../componnet/Ofers"
-import callAPI from '../Core/callAPI';
+import getAPI from '../Core/API';
 export default function Home() {
     const[data,setData] = useState([])
     useEffect(()=>{
-      callAPI("").then(res => setData(res))
+      getAPI("").then(res => setData(res))
     },[]);
   return (
     <>
