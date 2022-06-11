@@ -8,14 +8,28 @@ import Ofers from "../componnet/Ofers"
 import getAPI from '../Core/API';
 export default function Home() {
     const[data,setData] = useState([])
+    const [select,setSelect]= useState({routeCar: "",homeCar:"",min:1000,max:500000});
+    // const isLoad = useRef(false);
+    const handlerRouteCar = (e)=>{
+      console.log(select);
+      setSelect({
+        ...select,
+        [e.target.name] : e.target.value
+      })
+    }
+    
     useEffect(()=>{
-      getAPI("").then(res => setData(res))
+      getAPI("").then(res => setData(res));
     },[]);
+
+   
   return (
     <>
         <div>
         <Menu />
-        <Navba></Navba>
+        <Navba handler = {handlerRouteCar} 
+        select = {select} 
+        data={data[0]}></Navba>
       </div>
       <div>
         <Ofers main={data}></Ofers>
