@@ -6,19 +6,17 @@ import { renderHomeCar, renderRouteCar } from '../Core/renderNavBar';
 
 
 export default function Navba(props) { 
-  const routeCar = props.data  === undefined ?
+  var chua = []
+  const homeCar =props.data.length  === 0 ?
   "loading nè...." :
-  renderRouteCar(props.data.web);
-  const homeCar = props.data  === undefined ?
-  "loading nè...." :
-  // renderRouteCar(props.data.web)
-  renderHomeCar(props.data.web);
-  
-
-
+  renderHomeCar(props.data[0].web);
+  props.data.length  === 0 ?
+  chua = "loading nè...." :
+  props.data.forEach((e,i) => {
+    chua[i] = renderRouteCar(e.web)
+  });
     return (
     <>
-   
         <div className="container">
         <div className="row">
           <div className="col-lg-12 ">
@@ -29,7 +27,7 @@ export default function Navba(props) {
                 <h2>Tuyến đường</h2>
                   <i className="fa fa-chevron-down" />
                   <select name='routeCar' value={props.select.routeCar} onChange={props.handler} className='distance_item'>
-                    {routeCar}
+                    {chua}
                   </select>
                 </div>
                 <div className="distance_item">
@@ -44,6 +42,12 @@ export default function Navba(props) {
                   <i className="fa fa-chevron-down" />
                   <input name='min' value={props.select.min} onChange={props.handler} />
                   <input name='max' value={props.select.max} onChange={props.handler}/>
+                </div>
+                      <div className="distance_item">
+                <h2>Tìm kiếm</h2>
+                <div style={{color:"#fff"}} className="button book_button">
+                  <a >tìm kiếm đi các babn trẻ</a>
+                </div>
                 </div>
               </div>
               <h2>{props.select.homeCar}</h2>

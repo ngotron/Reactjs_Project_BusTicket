@@ -17,7 +17,6 @@ export default function Home() {
         [e.target.name] : e.target.value
       })
     }
-    
     useEffect(()=>{
       getAPI("").then(res => setData(res));
     },[]);
@@ -29,7 +28,7 @@ export default function Home() {
         <Menu />
         <Navba handler = {handlerRouteCar} 
         select = {select} 
-        data={data[0]}></Navba>
+        data={data}></Navba>
       </div>
       <div>
         <Ofers main={data}></Ofers>
