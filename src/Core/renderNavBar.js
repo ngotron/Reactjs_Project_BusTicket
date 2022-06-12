@@ -5,7 +5,7 @@ const renderRouteCar = (data)=>{
      seen.add(el.route);
      return !duplicate;
    }).map(
-     (item,i)=><option key={i}>{item.route}</option>)
+     item=><option>{item.route}</option>)
  }
 const renderHomeCar = (data) =>{
     const seen = new Set();

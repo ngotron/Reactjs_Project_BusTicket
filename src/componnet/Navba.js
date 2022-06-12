@@ -13,7 +13,8 @@ export default function Navba(props) {
   props.data.length  === 0 ?
   chua = "loading nè...." :
   props.data.forEach((e,i) => {
-    chua[i] = renderRouteCar(e.web)
+    chua[i]  = renderRouteCar(e.web);
+    
   });
     return (
     <>
@@ -22,14 +23,16 @@ export default function Navba(props) {
           <div className="col-lg-12 ">
             {/* Offers Sorting */}
             <div className="offers_sorting_container">
+
+              <form  onSubmit={props.submit}>
               <div className="offers_sorting d-flex justify-content-around">
               <div className="distance_item">
-                <h2>Tuyến đường</h2>
-                  <i className="fa fa-chevron-down" />
-                  <select name='routeCar' value={props.select.routeCar} onChange={props.handler} className='distance_item'>
-                    {chua}
-                  </select>
-                </div>
+                  <h2>Tuyến đường</h2>
+                    <i className="fa fa-chevron-down" />
+                    <select name='routeCar' value={props.select.routeCar|| "vui long chon"} onChange={props.handler} className='distance_item'>
+                      {chua}
+                    </select>
+                  </div>
                 <div className="distance_item">
                 <h2>Nhà xe</h2>
                   <i className="fa fa-chevron-down" />
@@ -45,11 +48,12 @@ export default function Navba(props) {
                 </div>
                       <div className="distance_item">
                 <h2>Tìm kiếm</h2>
-                <div style={{color:"#fff"}} className="button book_button">
-                  <a >tìm kiếm đi các babn trẻ</a>
+                <div >
+                  <button className="button"  >tìm kiếm đi các babn trẻ</button>
                 </div>
                 </div>
               </div>
+              </form>
               <h2>{props.select.homeCar}</h2>
               <h2>{props.select.routeCar}</h2>
               <h2>{props.select.min}</h2>
