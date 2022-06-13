@@ -1,7 +1,6 @@
 import React from 'react'
 
 export default function ProductComponent(props) {
-  console.log(props.car);
   return (
     <>
          <div className="offers_item rating_5">
@@ -12,7 +11,7 @@ export default function ProductComponent(props) {
                         {/* Image by https://unsplash.com/@rktkn */}
                         <div
                           className="offers_image_background"
-                          style={{ backgroundImage: `url(${props.car.anh || "https://i.pinimg.com/564x/f7/a5/48/f7a5489830eef765b2ba8bc77f66e25d.jpg"})` }}
+                          style={{ backgroundImage: `url(https://media.baodautu.vn/Images/viethuong/2021/05/12/bx.jpg` }}
                         />
                         <div className="offer_name">
                           <a href=" single_listing.html"></a>
@@ -36,7 +35,7 @@ export default function ProductComponent(props) {
                           Thông tin: {(props.car.note & props.car.timeStart )  || props.car.phone || "Đang được cập nhật" }
                         </div>
                         <div className="button book_button">
-                          <a href=" #">
+                          <a href="https://vexere.com/">
                           book
                           <span />
                           <span />

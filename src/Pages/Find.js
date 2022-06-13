@@ -16,6 +16,16 @@ export default function Find() {
     }
     let query = useQuery();
     
+        //create a fucntion to convert string to number
+        const validatePrice = (string)=>{
+            if( string.indexOf(".") >=0 ){
+             return string.replace(".","")
+            }
+            else if(string.indexOf(" ") >=0 ){
+             return string.replace(" ","")
+            }
+            else return string
+         }
     useEffect(()=>{
         getAPI("").then(res=>setData({
             ...data,
@@ -28,12 +38,14 @@ export default function Find() {
         containerBuy = []
         data.arr.map(itemParent =>itemParent.web
             .filter((item)=>item.route === query.get("route")
-            & parseInt(item.price) < parseInt(query.get("max")))
+            & parseInt(validatePrice(item.price)) <= parseInt(query.get("max"))
+            & parseInt(validatePrice(item.price)) >= parseInt(query.get("min"))-1000)
             .map(item=>containerBuy.push(item)));
     }
+
+
   return (
     <div className='container'>
-        show :{query.get("route")}
         {
             data.isLoad ?
 
@@ -46,10 +58,10 @@ export default function Find() {
                     />
                     </>        
                 else return  <> 
-                <h2>Chúng tôi offer vừa vừa cho bạn</h2>
-                <ProductComponent 
-                 car={item}
-                />
+                    <h2>Chúng tôi offer vừa vừa cho bạn</h2>
+                    <ProductComponent 
+                    car={item}
+                    />
                 </>
                }
                )

@@ -6,13 +6,13 @@ import PreLoading from '../componnet/PreLoading';
 import getAPI from '../Core/API';
 
 export default function WebVeXe() {
-  const [data,setData]=useState({
-    data:[],
-    isLoad :false
-  });
-  const {id} = useParams();
+    const [data,setData]=useState({
+        data:[],
+        isLoad :false
+    });
+    const {id} = useParams();
 
-  const columnss = [
+    const columnss = [
     {
         name: 'Nhà xe',
         selector: row => row.homeCar,
@@ -24,35 +24,36 @@ export default function WebVeXe() {
     {
       name: 'Giá vé',
       selector: row => row.price,
-  },
+    },
 ];
   // if homeCar null will return "Nhà xe  Phương Trang";
-  const convert = (data) =>{
-    return data.map(item=>{
-      if(item.homeCar === undefined) return item.homeCar = "Nhà xe Phương Trang"
-      else return item
-    })
-  }
+    const convert = (data) =>{
+        return data.map(item=>{
+            if(item.homeCar === undefined) return item.homeCar = "Nhà xe Phương Trang"
+            else return item
+        })
+    }
 
   useEffect(()=>{
     getAPI(""+id).then(res=>
-      setData({...data,
-        data:res,
-        isLoad:true
+        setData({...data,
+            data:res,
+            isLoad:true
       }));
-  },[])
+    },[])
  
-  return (
+    return (
     <>
         {data.isLoad ?
-         <>
+        <>
             <h2>Dữ liệu: {data.data.name}</h2>
             <DataTable
             columns={columnss}
             data={convert(data.data.web)}
-          />
-         </>
-          :<PreLoading/>
+        />
+        </>
+        :
+        <PreLoading/>
           }
     </>
   )

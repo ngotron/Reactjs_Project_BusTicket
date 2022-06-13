@@ -11,13 +11,6 @@ function App() {
 
   return (
     <>
-    {/* <nav>
-      <ul>
-        <li><Link to="/">aaaa</Link></li>
-        <li><Link to="/fff">bbbb</Link></li>
-        <li><Link to="/ff33f">cccc</Link></li>
-      </ul>
-    </nav> */}
     <Menu/>
     <Routes>
       <Route path="/" element={<Home/>}></Route>

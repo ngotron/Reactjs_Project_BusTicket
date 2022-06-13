@@ -3,14 +3,14 @@ import React from 'react'
 import { renderHomeCar, renderRouteCar } from '../Core/renderNavBar';
 
 export default function Navba(props) { 
-  var chua = []
-  const homeCar =props.data.length  === 0 ?
-  "loading nè...." :
-  renderHomeCar(props.data[0].web);
-  props.data.length  === 0 ?
-  chua = "loading nè...." :
-  props.data.forEach((e,i) => {
-    chua[i]  = renderRouteCar(e.web);
+    var chua = []
+    const homeCar =props.data.length  === 0 ?
+    "loading nè...." :
+    renderHomeCar(props.data[0].web);
+    props.data.length  === 0 ?
+    chua = "loading nè...." :
+    props.data.forEach((e,i) => {
+        chua[i]  = renderRouteCar(e.web);
     
   });
     return (
@@ -26,31 +26,27 @@ export default function Navba(props) {
               <div className="distance_item">
                   <h2>Tuyến đường</h2>
                     <i className="fa fa-chevron-down" />
-                    <select name='routeCar' value={props.select.routeCar|| "vui long chon"} onChange={props.handler} className='distance_item'>
+                    <select name='routeCar' value={props.select.routeCar} onChange={props.handler} className='distance_item'>
                       {chua}
                     </select>
                   </div>
                 <div className="distance_item">
                 <h2>Giá</h2>
                   <i className="fa fa-chevron-down" />
+                  <label>Nhập tiền tối thiểu</label>
                   <input name='min' value={props.select.min} onChange={props.handler} />
+                  <label>Nhập tiền tối đa </label>
+
                   <input name='max' value={props.select.max} onChange={props.handler}/>
                 </div>
                       <div className="distance_item">
                 <h2>Tìm kiếm</h2>
                 <div >
-                  <button className="button"  >tìm kiếm đi các babn trẻ</button>
+                  <button className="button"  >tìm kiếm Nhà xe phù hợp</button>
                 </div>
                 </div>
               </div>
               </form>
-
-              {/* show information that user select option */}
-              
-              {/* <h2>{props.select.homeCar}</h2>
-              <h2>{props.select.routeCar}</h2>
-              <h2>{props.select.min}</h2>
-              <h2>{props.select.max}</h2> */}
             </div>
           </div>
         </div>
