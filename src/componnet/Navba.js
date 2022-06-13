@@ -2,9 +2,6 @@
 import React from 'react'
 import { renderHomeCar, renderRouteCar } from '../Core/renderNavBar';
 
-
-
-
 export default function Navba(props) { 
   var chua = []
   const homeCar =props.data.length  === 0 ?
@@ -34,13 +31,6 @@ export default function Navba(props) {
                     </select>
                   </div>
                 <div className="distance_item">
-                <h2>Nhà xe</h2>
-                  <i className="fa fa-chevron-down" />
-                  <select name='homeCar' value={props.select.homeCar} onChange={props.handler} className='distance_item'>
-                  {homeCar}
-                  </select>
-                </div>
-                <div className="distance_item">
                 <h2>Giá</h2>
                   <i className="fa fa-chevron-down" />
                   <input name='min' value={props.select.min} onChange={props.handler} />
@@ -54,10 +44,13 @@ export default function Navba(props) {
                 </div>
               </div>
               </form>
-              <h2>{props.select.homeCar}</h2>
+
+              {/* show information that user select option */}
+              
+              {/* <h2>{props.select.homeCar}</h2>
               <h2>{props.select.routeCar}</h2>
               <h2>{props.select.min}</h2>
-              <h2>{props.select.max}</h2>
+              <h2>{props.select.max}</h2> */}
             </div>
           </div>
         </div>

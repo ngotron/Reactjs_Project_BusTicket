@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function ProductComponent(props) {
+  console.log(props.car);
   return (
     <>
          <div className="offers_item rating_5">
@@ -21,23 +22,18 @@ export default function ProductComponent(props) {
                     <div className="col-lg-8">
                       <div className="offers_content">
                         <div className="offers_price">
-                          ${props.car.gia}<span>Một chiều</span>
+                          ${props.car.price}<span>Một chiều</span>
                         </div>
                         <div
                           className="rating_r rating_r_4 offers_rating"
                           data-rating={4}
                         >
-                          <i />
-                          <i />
-                          <i />
-                          <i />
-                          <i />
                         </div>
                         <p className="offers_text">
-                        {props.name || "Nha xe Chí Linh"}
+                        {props.car.homeCar || "Nha xe Phương Trang"}
                         </p>
                         <div className="offers_icons">
-                            {props.car.tuyenDuong || props.car.moTa }
+                          Thông tin: {(props.car.note & props.car.timeStart )  || props.car.phone || "Đang được cập nhật" }
                         </div>
                         <div className="button book_button">
                           <a href=" #">
@@ -49,7 +45,7 @@ export default function ProductComponent(props) {
                         </div>
                         <div className="offer_reviews">
                           <div className="offer_reviews_content">
-                            <div className="offer_reviews_title">very good</div>
+                            <div className="offer_reviews_title">Tuyến đường: {props.car.route}</div>
                             <div className="offer_reviews_subtitle">
                               100 reviews
                             </div>

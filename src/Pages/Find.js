@@ -4,10 +4,11 @@ import { useLocation } from 'react-router-dom';
 import getAPI from '../Core/API';
 export default function Find() {
 
-    const [data,setData] = useState([]);
-    // const [buy,SetBuy]= useState([]);
+    const [data,setData] = useState({
+        arr:[],
+        isLoad:false
+    });
     // f to help get string query to 
-    var isLoad = false;
     var containerBuy;
     function useQuery() {
         const { search } = useLocation();
@@ -16,33 +17,44 @@ export default function Find() {
     let query = useQuery();
     
     useEffect(()=>{
-        getAPI("").then(res=>setData(res));
+        getAPI("").then(res=>setData({
+            ...data,
+            arr:res,
+            isLoad:true
+        }));
     },[]);
 
-    if(data.length !== 0){
-        
-         containerBuy = []
-         data.map(itemParent =>itemParent.web.filter((item)=>item.route ===query.get("route") & parseInt(item.price) < parseInt(query.get("max"))  ).map(item=>containerBuy.push(item)));
-        // SetBuy({...buy,containerBuy});
-        const a = parseInt(containerBuy[0].price)
-        console.log(typeof a,a );
-        isLoad = true
+    if(data.isLoad){
+        containerBuy = []
+        data.arr.map(itemParent =>itemParent.web
+            .filter((item)=>item.route === query.get("route")
+            & parseInt(item.price) < parseInt(query.get("max")))
+            .map(item=>containerBuy.push(item)));
     }
   return (
     <div className='container'>
         show :{query.get("route")}
         {
-            isLoad ?
+            data.isLoad ?
 
             containerBuy.map((item,i)=>
                {
-                if(i===0) return    <><h2>Chúng tôi cực kỳ offer cho bạn</h2>  <ProductComponent  car={item} name="hihihi"></ProductComponent></>        
-                else 
-                    return  <> <h2>Chúng tôi offer vừa vừa cho bạn</h2><ProductComponent  car={item} name="hihihi"></ProductComponent></>
+                if(i===0) return    <>
+                    <h2>Chúng tôi cực kỳ offer cho bạn</h2>
+                    <ProductComponent 
+                    car={item}
+                    />
+                    </>        
+                else return  <> 
+                <h2>Chúng tôi offer vừa vừa cho bạn</h2>
+                <ProductComponent 
+                 car={item}
+                />
+                </>
                }
                )
             :
-            "Loading"
+            "Loading..."
         }
        
         <br></br>
