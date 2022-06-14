@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import DataTable from 'react-data-table-component';
-
+import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom'
 import PreLoading from '../componnet/PreLoading';
 import getAPI from '../Core/API';
@@ -11,7 +11,7 @@ export default function WebVeXe() {
         isLoad :false
     });
     const {id} = useParams();
-    
+
     const columnss = [
     {
         name: 'Nhà xe',
@@ -55,6 +55,15 @@ export default function WebVeXe() {
         :
         <PreLoading/>
         }
+               <div className="button book_button">
+            <Link to="/">
+                Về trang chủ
+                <span />
+                <span />
+                <span />    
+            </Link> 
+        <br></br>
+        </div>
     </>
   )
 }

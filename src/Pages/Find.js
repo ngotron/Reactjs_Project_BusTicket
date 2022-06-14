@@ -1,6 +1,6 @@
 import {React,useEffect,useMemo, useState} from 'react'
 import ProductComponent from '../componnet/ProductComponent'
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import validatePrice from '../Core/validate';
 import getAPI from '../Core/API';
 export default function Find() {
@@ -65,8 +65,16 @@ export default function Find() {
             :
             "Loading..."
         }
-
+        <div className="button book_button">
+            <Link to="/">
+                Về trang chủ
+                <span />
+                <span />
+                <span />    
+            </Link> 
         <br></br>
+        </div>
+       
     </div>
   )
 }
