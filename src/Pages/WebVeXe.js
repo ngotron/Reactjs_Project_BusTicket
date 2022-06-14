@@ -11,7 +11,7 @@ export default function WebVeXe() {
         isLoad :false
     });
     const {id} = useParams();
-
+    
     const columnss = [
     {
         name: 'Nhà xe',
@@ -34,13 +34,13 @@ export default function WebVeXe() {
         })
     }
 
-  useEffect(()=>{
-    getAPI(""+id).then(res=>
-        setData({...data,
-            data:res,
-            isLoad:true
-      }));
-    },[])
+    useEffect(()=>{
+        getAPI(""+id).then(res=>
+            setData({...data,
+                data:res,
+                isLoad:true
+        }));
+        },[])
  
     return (
     <>
@@ -54,7 +54,7 @@ export default function WebVeXe() {
         </>
         :
         <PreLoading/>
-          }
+        }
     </>
   )
 }

@@ -1,6 +1,7 @@
 import {React,useEffect,useMemo, useState} from 'react'
 import ProductComponent from '../componnet/ProductComponent'
 import { useLocation } from 'react-router-dom';
+import validatePrice from '../Core/validate';
 import getAPI from '../Core/API';
 export default function Find() {
 
@@ -17,15 +18,7 @@ export default function Find() {
     let query = useQuery();
     
         //create a fucntion to convert string to number
-        const validatePrice = (string)=>{
-            if( string.indexOf(".") >=0 ){
-             return string.replace(".","")
-            }
-            else if(string.indexOf(" ") >=0 ){
-             return string.replace(" ","")
-            }
-            else return string
-         }
+
     useEffect(()=>{
         getAPI("").then(res=>setData({
             ...data,
@@ -43,32 +36,36 @@ export default function Find() {
             .map(item=>containerBuy.push(item)));
     }
 
-
-  return (
-    <div className='container'>
-        {
-            data.isLoad ?
-
-            containerBuy.map((item,i)=>
-               {
-                if(i===0) return    <>
+    const renderContainer = (container)=>{
+        if(container.length !== 0){
+            return container.map((item,i)=>
+            {
+                if(i===0) return <>
                     <h2>Chúng tôi cực kỳ offer cho bạn</h2>
                     <ProductComponent 
                     car={item}
                     />
                     </>        
-                else return  <> 
+                else return <> 
                     <h2>Chúng tôi offer vừa vừa cho bạn</h2>
                     <ProductComponent 
                     car={item}
                     />
                 </>
-               }
-               )
+                }
+            )
+        }
+        else return <h2>Hiện tại trang web chưa có tuyến xe phù hợp</h2>
+    }
+    return (
+        <div className='container'>
+        {
+            data.isLoad ?
+            renderContainer(containerBuy)  
             :
             "Loading..."
         }
-       
+
         <br></br>
     </div>
   )

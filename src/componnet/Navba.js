@@ -1,18 +1,14 @@
 
 import React from 'react'
-import { renderHomeCar, renderRouteCar } from '../Core/renderNavBar';
+import {renderRouteCar } from '../Core/renderNavBar';
 
 export default function Navba(props) { 
     var chua = []
-    const homeCar =props.data.length  === 0 ?
-    "loading nè...." :
-    renderHomeCar(props.data[0].web);
     props.data.length  === 0 ?
     chua = "loading nè...." :
     props.data.forEach((e,i) => {
         chua[i]  = renderRouteCar(e.web);
-    
-  });
+    });
     return (
     <>
         <div className="container">
