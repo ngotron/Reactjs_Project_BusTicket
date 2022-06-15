@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# Get price of ticket information project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![UI of the website](./Images/UI.PNG)
 
-## Available Scripts
+## talk about the project
 
-In the project directory, you can run:
+* we create two project(Back end and front end)
 
-### `npm start`
+* We crawl data from 3 website
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. API Hosting
+This project to crawl data from 3 website and save it, after that with <font color="gree">nodemon</font> <https://www.npmjs.com/package/nodemon>
+we will start project and api will be reload,
 
-### `npm test`
+![This is flowchart](./Images/flowchart.PNG)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## How to run?
 
-### `npm run build`
+### Front-end project
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* <https://github.com/ngotron/Reactjs_Project_BusTicket/tree/master>
+* Because the node_modules so strong, therefor I can not push it on github, i use .gitignore to un-push node_modules.
+Please write:
+<font color="gree">npm i</font>
+to install node_modules.
+and to run write: <font color="gree">npm start</font>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Back-end project
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* <https://github.com/tranvanhieu01012002/api-hosting>
+* Because the node_modules so strong, therefor I can not push it on github, i use .gitignore to un-push node_modules.
 
-### `npm run eject`
+* config package.json file
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+npm init
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Please write to install node_modules
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+npm i
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+* install json server
 
-## Learn More
+```
+npm install -g json-server
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To install nodemon
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+npm install --save-dev nodemon
+```
 
-### Code Splitting
+and to run:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+npm run dev
+```
 
-### Analyzing the Bundle Size
+### Note
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* Front end run on port:3000
 
-### Making a Progressive Web App
+* Back end run on port:4000
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+* Therefor if you have any app run in to port, please turn off it.
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Demo video

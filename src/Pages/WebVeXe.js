@@ -16,6 +16,7 @@ export default function WebVeXe() {
     {
         name: 'Nhà xe',
         selector: row => row.homeCar,
+        
     },
     {
         name: 'Tuyến đường',
@@ -24,6 +25,7 @@ export default function WebVeXe() {
     {
       name: 'Giá vé',
       selector: row => row.price,
+      sortable: true,
     },
 ];
   // if homeCar null will return "Nhà xe  Phương Trang";
