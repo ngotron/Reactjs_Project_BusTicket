@@ -2,7 +2,7 @@ import {React,useEffect,useMemo, useState} from 'react'
 import ProductComponent from '../componnet/ProductComponent'
 import { Link, useLocation } from 'react-router-dom';
 import validatePrice from '../Core/validate';
-import getAPI from '../Core/API';
+import {getAPI} from '../Core/API';
 export default function Find() {
 
     const [data,setData] = useState({

@@ -1,9 +1,9 @@
 import { useEffect,useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import React from 'react'
 import Navba from "../componnet/Navba";
 import Ofers from "../componnet/Ofers"
-import getAPI from '../Core/API';
+import {getAPI} from '../Core/API';
 export default function Home() {
     const nav = useNavigate();
     const[data,setData] = useState([]);
@@ -42,6 +42,11 @@ export default function Home() {
                 select = {select} 
                 data={data}
             />
+            
+
+        </div>
+        <div className='container'>
+        <Link to="/BookingSeat">demo dat ve xe</Link>
         </div>
         <div>
             <Ofers

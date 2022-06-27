@@ -3,7 +3,7 @@ import DataTable from 'react-data-table-component';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom'
 import PreLoading from '../componnet/PreLoading';
-import getAPI from '../Core/API';
+import {getAPI} from '../Core/API';
 
 export default function WebVeXe() {
     const [data,setData]=useState({
