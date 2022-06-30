@@ -6,7 +6,6 @@ import {getAPISeats, patchAPISeats} from '../Core/API';
 import {randomID} from "../Core/randomID";
 export default function BookingSeat() {
 
-
     const [checkedState, setCheckedState] = useState(
         {
             isLoad:false,
@@ -14,7 +13,11 @@ export default function BookingSeat() {
             isChange:false,
         }
     );
-    
+    const [counter, setCounter] = useState({
+        minute:1,
+        second:60  
+    });
+
     const [total,setTotal] = useState();
     
     const ref = useRef([]);
@@ -25,7 +28,6 @@ export default function BookingSeat() {
     
     const changeColor = (first,second)=>{
         // 
-        console.log(second);
         if(first.status_s === 1 && first.user === second ){
             return true;
         }
@@ -38,20 +40,16 @@ export default function BookingSeat() {
         else {
             return false
         }
-       
-        // else {
-        //     return true;
-        // }
-    }
-    // {...item,status_s:!item.status_s,  user:sessionStorage.getItem("user")}
-    const handlerOnClick = (e,position)=>{
 
+    }
+
+    const handlerOnClick = (e,position)=>{
+        
         const updateCheckedStateArr = checkedState.seats_arr.map((item,index)=>
         index === position ?  
         (changeColor(item,sessionStorage.getItem("user"))
-        ?{...item,status_s:item.status_s===1?0:1  ,  user:sessionStorage.getItem("user")}:item) : 
+        ?{...item,status_s:item.status_s===1?0:1  , user : item.status_s===1? "": sessionStorage.getItem("user")}:item) : 
         item
-
         );
         
         const updateCheckedState = (pre) =>  (
@@ -102,7 +100,6 @@ export default function BookingSeat() {
         
         return dataShow;
     }
-    console.log(2);
     useEffect(()=>{
     
         setInterval(()=>{
@@ -116,12 +113,11 @@ export default function BookingSeat() {
                   ))
                 }
               )
-        },4000)
-
+        },2000)
     },[])
 
-    useEffect(()=>{
-
+     // Third Attempts
+     useEffect(() => {
         setTotal(checkedState.seats_arr.reduce((pre,currentValue)=>{
 
             if(currentValue.status_s && currentValue.user === sessionStorage.getItem("user")){
@@ -135,17 +131,43 @@ export default function BookingSeat() {
 
             }
         },[0]));
+        let timer = null
+          if(counter.second > 0) timer = setInterval(() => setCounter((pre)=>({...pre,second:pre.second-1})), 1000)
+          else if(counter.minute == 0 && counter.second == 0) {
+            timer = setInterval(() => setCounter((pre)=>({...pre,second:pre.second-1})), 1000);
+            const change = resetSeat();
+            change.length !== 0 ? change.map(  (item,i)=>{
+                if(i=== change.length-1 ) setCounter({
+                    minute:1,
+                    second:60  
+                })
+                return patchAPISeats(item.id,{...item,status_s:0,user:""}).then(res=>console.log(res)).catch(err=>console.log(err))
+            }):setCounter({
+                minute:1,
+                second:60  
+            })
+          }
+          else if(counter.second == 0) timer = setInterval(() => setCounter((pre)=>({...pre,second:60,minute:pre.minute-1})), 1000);
+          
+          return () =>  clearInterval(timer);
+      }, [counter.second]);
+   
+    useEffect(()=>{
 
         const send = 
             checkedState.seats_arr.find((item,i) => 
             item.status_s !== ref.current.seats_arr[i].status_s )
             || "";
         
-        checkedState.isLoad && send !== "" ? patchAPISeats(send.id,{...send,})
+        checkedState.isLoad && send !== "" ? patchAPISeats(send.id,{...send})
         .then(res=>console.log(res))
         .catch(err=>console.log(err)):console.log(false);;
 
     },[checkedState.isChange]);
+    
+    const resetSeat = ()=>{
+      return checkedState.seats_arr.filter(item=>item.user === sessionStorage.getItem("user"));
+    }
 
     return (
         <div className='container '>
@@ -157,7 +179,9 @@ export default function BookingSeat() {
             </div>
             <div className='d-flex justify-content-between'></div>
             <h3>Uoc tinh tong tien: {total}</h3>
-            <Link to={"/SendMail"}>Den trang tinh tien</Link>
+            <div>Countdown: {`dang dem nguoc m:${counter.minute} va s:${counter.second}`}</div>
+          
+            {resetSeat().length !== 0 ? <Link to={"/Contact"}>Den trang tinh tien</Link> : "Vui long chon ghe"  }
         </div>
     )
 }

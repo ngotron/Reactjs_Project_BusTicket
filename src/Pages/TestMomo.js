@@ -1,10 +1,18 @@
-import React, { useRef } from 'react';
-// import emailjs from 'emailjs-com';
-// import sendRequest from './TestMomo';
 
-export  const SendMail = () => {
-  const form = useRef();
-  const sendRequest = () =>{
+//https://developers.momo.vn/#/docs/en/aiov2/?id=payment-method
+//parameters
+// import * as crypto from "crypto"
+// step to use:
+// 1. change input
+// 2 install crypto
+//npm install crypto --save
+// import { createHmac } from "crypto" 
+// import Crypto from 'crypto';
+//Link :: https://github.com/momo-wallet/payment/blob/master/nodejs/package-lock.json
+
+//before sign HMAC SHA256 with format
+//accessKey=$accessKey&amount=$amount&extraData=$extraData&ipnUrl=$ipnUrl&orderId=$orderId&orderInfo=$orderInfo&partnerCode=$partnerCode&redirectUrl=$redirectUrl&requestId=$requestId&requestType=$requestType
+const sendRequest = () =>{
     var partnerCode = "MOMOKFAC20220630";
 var accessKey = "mTdFOuBuuTxB9ffo";
 var secretkey = "uAlcFd1G6UcpnooDPMgB7paYbW61aNIV";
@@ -81,33 +89,5 @@ var extraData = ""; //pass empty value if your merchant does not have stores
     req.write(requestBody);
     req.end();
 }
-  const sendEmail = (e) => {
-    e.preventDefault();
-    sendRequest()
-   /* emailjs.sendForm('service_p0492fq', 'template_hysef9q', form.current, 'user_NCZiEsz50dB5kjWGfQKbX')
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      });
-      */
-    };
-  
-
-  return (
-    <form ref={form} onSubmit={sendEmail}>
-      <label>Name</label>
-      <input type="text" name="to_name" />
-      <br></br>
-      <label>Email</label>
-      <input type="email" name="to_mail" />
-      <br></br>
-
-      <label>Message</label>
-      <textarea name="message" />
-      <br></br>
-
-      <input type="submit" value="Send" />
-    </form>
-  );
-};
+// sendRequest();
+// export default sendRequest;
