@@ -16,9 +16,7 @@ function Contact() {
     alert("back ");
   };
   const sendMessge = () => {
-    setForm({
-      ...formData,
-    });
+    alert("send message ");
   };
 
   JSON.stringify(formData);
