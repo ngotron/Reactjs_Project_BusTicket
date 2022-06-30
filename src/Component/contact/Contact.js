@@ -1,6 +1,30 @@
 import React from "react";
+import { useState } from "react";
 
 function Contact() {
+  const [formData, setForm] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    IDcard: "",
+    DOB: "",
+  });
+
+  // console.log(form);
+
+  const backData = () => {
+    alert("back ");
+  };
+  const sendMessge = () => {
+    setForm({
+      ...formData,
+    });
+  };
+
+  JSON.stringify(formData);
+
+  // e.preventDefault();
+
   return (
     <div
       className="p-2  mx-auto "
@@ -24,6 +48,8 @@ function Contact() {
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder="Name"
+            value={formData.name}
+            onChange={(e) => setForm({ ...formData, name: e.target.value })}
           />
         </div>
         <div className="mb-3">
@@ -36,6 +62,8 @@ function Contact() {
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder="Email"
+            value={setForm.email}
+            onChange={(e) => setForm({ ...formData, email: e.target.value })}
           />
         </div>
         <div className="mb-3">
@@ -48,6 +76,10 @@ function Contact() {
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder="Phone number"
+            value={formData.phoneNumber}
+            onChange={(e) =>
+              setForm({ ...formData, phoneNumber: e.target.value })
+            }
           />
         </div>
         <div className="mb-3">
@@ -60,6 +92,8 @@ function Contact() {
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder="ID card"
+            value={formData.IDcard}
+            onChange={(e) => setForm({ ...formData, IDcard: e.target.value })}
           />
         </div>
         <div className="mb-3">
@@ -71,6 +105,8 @@ function Contact() {
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
+            value={formData.DOB}
+            onChange={(e) => setForm({ ...formData, DOB: e.target.value })}
           />
         </div>
         <div className="modal-footer">
@@ -78,19 +114,32 @@ function Contact() {
             type="button"
             className="btn btn-secondary"
             data-bs-dismiss="modal"
+            onClick={backData}
           >
             Back
           </button>
-          <button
-            type="button"
-            className="btn text-white"
-            style={{ background: "#31124b" }}
-          >
-            Send Message
-          </button>
+
+          <div>
+            <button
+              className="btn text-white"
+              style={{ background: "#31124b" }}
+              type="submit"
+              onClick={sendMessge}
+            >
+              Send Message
+            </button>
+          </div>
         </div>
       </form>
+      {/* {JSON.stringify(formData)} */}
+
+      <h2>Name:-{formData.name}</h2>
+      <h2>Email:-{formData.email}</h2>
+      <h2>IDcard:-{formData.IDcard}</h2>
+      <h2>DOB:-{formData.DOB}</h2>
+      <h2>Phone number:-{formData.phoneNumber}</h2>
     </div>
   );
 }
+
 export default Contact;
