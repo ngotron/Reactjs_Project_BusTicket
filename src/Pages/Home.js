@@ -42,11 +42,8 @@ export default function Home() {
                 select = {select} 
                 data={data}
             />
-            
-
         </div>
         <div className='container'>
-        <Link to="/BookingSeat">demo dat ve xe</Link>
         </div>
         <div>
             <Ofers
