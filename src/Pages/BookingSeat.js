@@ -4,6 +4,8 @@ import Seat from '../componnet/Seat'
 import {getAPISeats, patchAPISeats} from '../Core/API';
 // import renderSeats from '../Core/renderSeats';
 import {randomID} from "../Core/randomID";
+import Note from '../componnet/Note';
+import { price } from '../Core/GlobalNumber';
 export default function BookingSeat() {
 
     const [checkedState, setCheckedState] = useState(
@@ -101,7 +103,6 @@ export default function BookingSeat() {
         return dataShow;
     }
     useEffect(()=>{
-    
         setInterval(()=>{
             getAPISeats("").then(res=> 
                 {
@@ -113,7 +114,7 @@ export default function BookingSeat() {
                   ))
                 }
               )
-        },2000)
+        },4000)
     },[])
 
      // Third Attempts
@@ -122,7 +123,7 @@ export default function BookingSeat() {
 
             if(currentValue.status_s && currentValue.user === sessionStorage.getItem("user")){
 
-                return 50 + parseInt(pre);
+                return price + parseInt(pre);
 
             }
             else{
@@ -168,7 +169,6 @@ export default function BookingSeat() {
     const resetSeat = ()=>{
       return checkedState.seats_arr.filter(item=>item.user === sessionStorage.getItem("user"));
     }
-
     return (
         <div className='container '>
             <div className='d-flex justify-content-center'>
@@ -177,11 +177,22 @@ export default function BookingSeat() {
                     {checkedState.isLoad ? renderSeats() : "loading..."}
                 </div>
             </div>
-            <div className='d-flex justify-content-between'></div>
-            <h3>Uoc tinh tong tien: {total}</h3>
-            <div>Countdown: {`dang dem nguoc m:${counter.minute} va s:${counter.second}`}</div>
-          
-            {resetSeat().length !== 0 ? <Link to={"/Contact"}>Den trang tinh tien</Link> : "Vui long chon ghe"  }
+            <div className='d-flex justify-content-between'>
+                <div>
+                    <h3>Uoc tinh tong tien: {total} vnD</h3>
+                    <div>{`Dang dem nguoc phut: ${counter.minute}:  ${counter.second} giay | se tai lai trang`}</div>
+                
+                    {resetSeat().length !== 0 ? <>
+                
+                        <Link to={{
+                            pathname: "/SelectPayment",
+                            search: "?seat=" + JSON.stringify(resetSeat().map(item=>item.id)) + "&" + "name=" +JSON.stringify(resetSeat().map(item=>item.name))
+                        }}>Den trang tinh tien</Link>
+                        <h3>Ban dang chon ghe: {resetSeat().map(item=><span>{item.name}|</span>)}  </h3>
+                    </> : "Vui long chon ghe"  }
+                        </div>
+                <Note/>
+                </div>
         </div>
     )
 }

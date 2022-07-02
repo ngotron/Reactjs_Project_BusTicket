@@ -19,8 +19,8 @@ export default function Seat({change,seat}) {
     return (
         <div 
             onClick={change}
-        className ={renderColor(seat,sessionStorage.getItem("user"))}>
-            {seat.name}
+            className ={renderColor(seat,sessionStorage.getItem("user"))}>
+            <h3 className='text-center seat-text'>{seat.name}</h3>
         </div>
     )
 }

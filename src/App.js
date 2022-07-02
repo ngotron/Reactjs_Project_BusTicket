@@ -9,6 +9,7 @@ import Menu from './Component/Menu';
 import {SendMail} from "./Pages/SendMail";
 import BookingSeat from "./Pages/BookingSeat";  
 import Contact from "./Component/contact/Contact";
+import SelectPayment from "./Pages/SelectPayment";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="/Web/:id" element={<WebVeXe/>}></Route>
             <Route path="/BookingSeat" element={<BookingSeat/>}></Route>
             <Route path="/Contact" element={<Contact />}></Route>
+            <Route path="/SelectPayment" element={<SelectPayment/>} />
         </Routes>
         <FooterMain></FooterMain>
     </>

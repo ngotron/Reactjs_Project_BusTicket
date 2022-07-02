@@ -1,11 +1,27 @@
+import React, { useState } from 'react'
+import { Link, useNavigate,useLocation } from 'react-router-dom';
+import { patchAPISeats } from '../Core/API';
 import { price } from '../Core/GlobalNumber';
 import { useRef } from 'react';
-
 // import axios from 'axios';
 const axios = require('axios').default; // npm install axios
 const CryptoJS = require('crypto-js'); // npm install crypto-js
 const moment = require('moment'); // npm install moment
-export  const SendMail = () => {
+
+
+export default function SelectPayment() {
+
+    const search = useLocation().search;
+
+    var seats = new URLSearchParams(search).get('seat');
+    seats = JSON.parse(seats);
+
+    var seat_name = new URLSearchParams(search).get('name');
+    seat_name = JSON.parse(seat_name);
+
+    const [select, setSelect] = useState();
+    const navigate = useNavigate();
+
     const idZAlo = useRef({
         transIDRef:Math.floor(Math.random() * 1000000),
         app_trans_idREf:`${moment().format('YYMMDD')}_${Math.floor(Math.random() * 1000000)}`
@@ -21,10 +37,9 @@ export  const SendMail = () => {
     // Node v10.15.3
     // APP INFO
     const SendZalo = ()=>{
-  
-
+    var seat_name = new URLSearchParams(search).get('name');
+    seat_name = JSON.parse(seat_name);
     const embed_data = {};
-
     const items = [{}];
     const transID = idZAlo.current.transIDRef ;
     const order = {
@@ -34,9 +49,9 @@ export  const SendMail = () => {
     app_time: Date.now(), // miliseconds
     item: JSON.stringify(items),
     embed_data: JSON.stringify(embed_data),
-    amount: price,
+    amount: price*seats.length,
     callback_url: "http://localhost:8888/callback",
-    description: `Lazada - Payment for the order #${transID}`,
+    description: `Thanh toan cho khach hang ghe ${seat_name.toString()}  #${transID}`,
     bank_code: "zalopayapp",
 };
 
@@ -45,15 +60,13 @@ export  const SendMail = () => {
     axios.post(config.endpoint, null, { params: order })
         .then(res => {
             console.log(res.data);
-            window.open(res.data.order_url);
+            window.location.replace(res.data.order_url);
         })
         .catch(err => console.log(err));
         }
     const confirm = () =>{
         
         const qs = require('qs');
-    
-      
     
         let postData = {
             app_id: config.app_id,
@@ -81,32 +94,48 @@ export  const SendMail = () => {
                 console.log(error);
             });
     }
-    const sendEmail = (e) => {
-        e.preventDefault();
-        // hash();
-        SendZalo()
+
+    const handleChange = e => {
+    const target = e.target;
+    if (target.checked) {
+        setSelect(target.value);
+    }
     };
+    const handleSubmit = e => {
+    e.preventDefault();
+    if(select === undefined)   return alert("vui long chon option")
+    else {
+       
+        seats.map(item=>patchAPISeats(item,{status_s:2,id:item}).then(res=>console.log(res)).catch(err=>console.log(err)))
+        if(select ==="cash") return navigate(`/Contact?name=${JSON.stringify(seat_name)}`);
+        else  SendZalo();
+    };
+
+    };
+
     setInterval(()=>{
         confirm();
-    console.log(idZAlo.current.app_trans_idREf);
-
-        console.log("hi anh");
+        console.log(idZAlo.current.app_trans_idREf);
     },60000)
 
-  return (
-    <form  onSubmit={sendEmail}>
-      <label>Name</label>
-      <input type="text" name="to_name" />
-      <br></br>
-      <label>Email</label>
-      <input type="email" name="to_mail" />
-      <br></br>
-
-      <label>Message</label>
-      <textarea name="message" />
-      <br></br>
-
-      <input type="submit" value="Send" />
+    return (
+    <div className='container'>
+        <Link to="/BookingSeat">Ve trang chon ghe</Link>
+        <form onSubmit={handleSubmit}>
+        <div>
+        <label>
+            <input type="radio" value="cash" checked={select == 'cash'} onChange={handleChange} />
+            <span> Tien mat</span>
+        </label>
+        <br></br>
+        <label>
+            <input type="radio" value="zalo" checked={select == 'zalo'} onChange={handleChange} />
+            <span> Vi zalo</span>
+        </label>
+        </div>
+        <button type="button" class="btn btn-success">Thanh toan</button>
     </form>
-  );
-};
+    <br></br>
+    </div>
+    );
+}

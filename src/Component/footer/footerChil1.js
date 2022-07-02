@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const FooterChil1 = () => {
   return (
@@ -8,10 +9,10 @@ const FooterChil1 = () => {
           <div className="footer_content footer_about">
             <div className="logo_container footer_logo">
               <div className="logo">
-                <a href="#">
+                <Link to="/">
                   <img src="images/logo.png" alt="" />
                   travelix
-                </a>
+                </Link>
               </div>
             </div>
             <p className="footer_about_text">

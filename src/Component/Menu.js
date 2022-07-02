@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Menu() {
     return (
         <div>
@@ -19,28 +21,25 @@ export default function Menu() {
                                     </ul>
                                 </div>
                                 <div className="user_box ml-auto">
-                                    <div className="user_box_login user_box_link"><a href=" #">login</a></div>
-                                    <div className="user_box_register user_box_link"><a href=" #">register</a></div>
+                                    <div className="user_box_login user_box_link"><a href=" #">Vui long</a></div>
+                                    <div className="user_box_register user_box_link"><a href=" #">khong copy</a></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 {/* Main Navigation */}
-                <nav className="main_nav">
+                <nav className="main_nav">  
                     <div className="container">
                         <div className="row">
                             <div className="col main_nav_col d-flex flex-row align-items-center justify-content-start">
                                 <div className="logo_container">
-                                    <div className="logo"><a href=" #"><img src="" alt="" />travelix</a></div>
+                                    <div className="logo"><Link to="/"><img src="" alt="" />travelix</Link></div>
                                 </div>
                                 <div className="main_nav_container ml-auto">
                                     <ul className="main_nav_list">
-                                        <li className="main_nav_item"><a href="index.html">home</a></li>
-                                        <li className="main_nav_item"><a href="about.html">about us</a></li>
-                                        <li className="main_nav_item"><a href=" #">offers</a></li>
-                                        <li className="main_nav_item"><a href="blog.html">news</a></li>
-                                        <li className="main_nav_item"><a href="contact.html">contact</a></li>
+                                        <li className="main_nav_item"><Link to="/">home</Link></li>
+                                        <li className="main_nav_item"><Link to="/BookingSeat">Dat ve xe</Link></li>
                                     </ul>
                                 </div>
                                 <div className="content_search ml-lg-0 ml-auto">

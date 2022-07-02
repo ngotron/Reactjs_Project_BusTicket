@@ -1,139 +1,181 @@
 import React, { useState ,useRef} from "react";
+
 import emailjs from 'emailjs-com';
+import { useLocation } from "react-router-dom";
+
 function Contact() {
+    const search = useLocation().search;
+    var seats = new URLSearchParams(search).get('name');
+    seats = JSON.parse(seats);
     const form = useRef();
 
-    const initialValue = {
-        name: "",
-        email:"",
-        phone:0,
-        dob: "",
-        id: ""
-    }
-    const [user,setUser] = useState(initialValue);
-    
-    const handlerChange = (e) =>{
-         const name = e.target.name 
-        //const value = e.target.value 
-        
-        const value = e.target.type === 'radio' ? e.target.checked : e.target.value;
-        setUser({...user,[name]:value})
-    }
-    const handlerSubmit = (e) =>{
+    const handlerSubmit = (e) => {
         e.preventDefault();
-        emailjs.sendForm('service_p0492fq', 'template_hysef9q', form.current, 'user_NCZiEsz50dB5kjWGfQKbX')
-        .then((result) => {
-            console.log(result.text);
-        }, (error) => {
-            console.log(error.text);
-        });
-      };
-    
+        emailjs
+            .sendForm(
+                "service_p0492fq",
+                "template_hysef9q",
+                form.current,
+                "user_NCZiEsz50dB5kjWGfQKbX"
+            )
+            .then(
+                (result) => {
+                    alert("ban da dat cho thanh cong");
+                },
+                (error) => {
+                    console.log(error.text);
+                }
+            );
+    };
+
+    const [formData, setForm] = useState({
+        name: "",
+        email: "",
+        phoneNumber: "",
+        IDcard: "",
+        DOB: "",
+    });
+
+    // console.log(form);
+
+    const backData = () => {
+        alert("back ");
+    };
+  
+
+    JSON.stringify(formData);
+
+    // e.preventDefault();
+
     return (
         <div
-        className="p-2  mx-auto "
-        style={{ width: 650, margin: 300, padding: 300 }}
+            className="p-2  mx-auto "
+            style={{ width: 650, margin: 300, padding: 300 }}
         >
-        <form ref={form} onSubmit={handlerSubmit}
-            className="rounded"
-            style={{
-            background: "linear-gradient(to top right, #fa9e1b, #8d4fff)",
-            padding: 50,
-            }}
-        >
-            <h3 className="text-center">CONTACT US</h3>
-            <div className="mb-3">
-            <label htmlFor="name" className="form-label">
-                Name:
-            </label>
-            <input
-                value={user.name}
-                name="name"
-                className="form-control"
-                id="name"
-                placeholder="Name"
-                onChange={handlerChange}
-            />
-            </div>
-            <div className="mb-3">
-            <label htmlFor="email" className="form-label">
-                Email:
-            </label>
-            <input
-                value={user.email}
-                type="email"
-                name=""
-                className="form-control"
-                id="email"
-                aria-describedby="emailHelp"
-                placeholder="Email"
-                onChange={handlerChange}
-            />
-            </div>
-            <div className="mb-3">
+            <form
+                ref={form}
+                onSubmit={handlerSubmit}
+                className="rounded"
+                style={{
+                    background: "linear-gradient(to top right, #fa9e1b, #8d4fff)",
+                    padding: 50,
+                }}
+            >
+                <h3 className="text-center">CONTACT US</h3>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">
+                        Name:
+                    </label>
+                    <input
+                        name="name"
+                        type="text"
+                        className="form-control"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                        placeholder="Name"
+                        value={formData.name}
+                        onChange={(e) => setForm({ ...formData, name: e.target.value })}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">
+                        Email:
+                    </label>
+                    <input
+                        name="email"
+                        type="email"
+                        className="form-control"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                        placeholder="Email"
+                        value={setForm.email}
+                        onChange={(e) => setForm({ ...formData, email: e.target.value })}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">
+                        Phone number:
+                    </label>
+                    <input
+                        name="phone"
+                        type="phoneNumber"
+                        className="form-control"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                        placeholder="Phone number"
+                        value={formData.phoneNumber}
+                        onChange={(e) =>
+                            setForm({ ...formData, phoneNumber: e.target.value })
+                        }
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">
+                        ID card:
+                    </label>
+                    <input
+                        name="id-card"
+                        type="IDcard"
+                        className="form-control"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                        placeholder="ID card"
+                        value={formData.IDcard}
+                        onChange={(e) => setForm({ ...formData, IDcard: e.target.value })}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">
+                        Date of birth:
+                    </label>
+                    <input
+                        name="dob"
+                        type="date"
+                        className="form-control"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                        value={formData.DOB}
+                        onChange={(e) => setForm({ ...formData, DOB: e.target.value })}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">
+                        Ghe da chon:
+                    </label>
+                    <input
+                        name="seats"
+                        className="form-control"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                        value={ seats !== null && seats.toString() }  
+                    />
+                </div>
+                <div className="modal-footer">
+                    <button
+                        type="button"
+                        className="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                        onClick={backData}
+                    >
+                        Back
+                    </button>
+
+                    <div>
+                        <button
+                            className="btn text-white"
+                            style={{ background: "#31124b" }}
+                            type="submit"
+                        >
+                            Send Message
+                        </button>
+                    </div>
+                </div>
+            </form>
+            {/* {JSON.stringify(formData)} */}
+
            
-      
-            </div>
-            <div className="mb-3">
-            <label htmlFor="phone" className="form-label">
-                Phone number:
-            </label>
-            <input
-                name="phone"
-                value={user.phone}
-                onChange={handlerChange}
-                className="form-control"
-                id="phone"
-                aria-describedby="emailHelp"
-                placeholder="Phone number"
-            />
-            </div>
-            <div className="mb-3">
-            <label htmlFor="id-card" className="form-label">
-                ID card:
-            </label>
-            <input
-                name="id"
-                className="form-control"
-                id="id-card"
-                onChange={handlerChange}
-                value={user.id}
-                placeholder="ID card"
-            />
-            </div>
-            <div className="mb-3">
-            <label htmlFor="date" className="form-label">
-                Date of birth:
-            </label>
-            <input
-                onChange={handlerChange}
-                type="date"
-                className="form-control"
-                id="date"
-                name="dob"
-                value={user.dob}
-            
-            />
-            </div>
-            <div className="modal-footer">
-            <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-            >
-                Back
-            </button>
-            <button
-                type="submit"
-                className="btn text-white"
-                style={{ background: "#31124b" }}
-            >
-                Send Message
-            </button>
-            </div>
-        </form>
-        {user.email}    
         </div>
-  );
+    );
 }
+
 export default Contact;

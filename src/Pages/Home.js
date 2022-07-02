@@ -46,7 +46,15 @@ export default function Home() {
 
         </div>
         <div className='container'>
-        <Link to="/BookingSeat">demo dat ve xe</Link>
+        
+        <div className="button book_button">
+            <Link to="/BookingSeat">
+                demo dat ve xe
+                <span />
+                <span />
+                <span />
+            </Link>
+        </div>
         </div>
         <div>
             <Ofers
