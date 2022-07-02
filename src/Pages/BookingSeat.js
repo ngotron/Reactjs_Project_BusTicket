@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import Seat from '../componnet/Seat'
 import {getAPISeats, patchAPISeats} from '../Core/API';
-// import renderSeats from '../Core/renderSeats';
 import {randomID} from "../Core/randomID";
 import Note from '../componnet/Note';
 import { price } from '../Core/GlobalNumber';
