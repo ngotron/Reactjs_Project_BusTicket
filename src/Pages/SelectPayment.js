@@ -102,10 +102,10 @@ export default function SelectPayment() {
     }
     };
     const handleSubmit = e => {
+        console.log("222");
     e.preventDefault();
     if(select === undefined)   return alert("vui long chon option")
     else {
-       
         seats.map(item=>patchAPISeats(item,{status_s:2,id:item}).then(res=>console.log(res)).catch(err=>console.log(err)))
         if(select ==="cash") return navigate(`/Contact?name=${JSON.stringify(seat_name)}`);
         else  SendZalo();
@@ -124,16 +124,16 @@ export default function SelectPayment() {
         <form onSubmit={handleSubmit}>
         <div>
         <label>
-            <input type="radio" value="cash" checked={select == 'cash'} onChange={handleChange} />
+            <input type="radio" value="cash" checked={select === 'cash'} onChange={handleChange} />
             <span> Tien mat</span>
         </label>
         <br></br>
         <label>
-            <input type="radio" value="zalo" checked={select == 'zalo'} onChange={handleChange} />
+            <input type="radio" value="zalo" checked={select === 'zalo'} onChange={handleChange} />
             <span> Vi zalo</span>
         </label>
         </div>
-        <button type="button" class="btn btn-success">Thanh toan</button>
+        <button class="btn btn-success">Thanh toan</button>
     </form>
     <br></br>
     </div>

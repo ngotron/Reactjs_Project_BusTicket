@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function ProductComponent(props) {
   return (
@@ -35,12 +36,12 @@ export default function ProductComponent(props) {
                           Thông tin: {(props.car.note & props.car.timeStart )  || props.car.phone || "Đang được cập nhật" }
                         </div>
                         <div className="button book_button">
-                          <a href="https://vexere.com/">
+                          <Link to="BookingSeat">
                           book
                           <span />
                           <span />
                           <span />
-                          </a>
+                          </Link>
                         </div>
                         <div className="offer_reviews">
                           <div className="offer_reviews_content">
